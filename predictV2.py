@@ -10,7 +10,7 @@ model = K.models.load_model("root/cnn_model.keras")
 classes = ['Healthy','Powdery','Rust']
 
 # Set up the Streamlit interface
-st.title("Skin Disease Classification")
+st.title("Plant Disease Detection")
 st.write("Upload an image of a skin condition to classify it.")
 
 # Upload an image
