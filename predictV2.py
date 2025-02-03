@@ -6,7 +6,8 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 
 # Define the absolute path to your model
-model_path = "/cnn_model.keras"
+model_path = "/root/cnn_model.keras"
+
 # Check if the model file exists
 if os.path.exists(model_path):
     # Load your trained model
