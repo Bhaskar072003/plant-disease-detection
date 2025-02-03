@@ -1,11 +1,11 @@
 import streamlit as st
 import numpy as np
 from PIL import Image
-import tensorflow.keras as K
+import tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 
 # Load your trained model
-model = K.models.load_model("root/cnn_model.keras")
+model = load_model("root/cnn_model.keras")
 # Define the class names
 classes = ['Healthy','Powdery','Rust']
 
