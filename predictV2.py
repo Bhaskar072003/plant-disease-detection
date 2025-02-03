@@ -39,13 +39,16 @@ if uploaded_file is not None:
     x = np.expand_dims(x, axis=0)
 
     # Predict the class of the image
-    prediction = model.predict(x)[0]
-    test_pred = np.argmax(prediction)
-    result = classes[test_pred]
-
-    # Display the result
-    st.write(f"Prediction: {result}")
-    st.write(f"Confidence: {np.max(prediction) * 100:.2f}%")
+    if 'model' in globals():
+        prediction = model.predict(x)[0]
+        test_pred = np.argmax(prediction)
+        result = classes[test_pred]
+        
+        # Display the result
+        st.write(f"Prediction: {result}")
+        st.write(f"Confidence: {np.max(prediction) * 100:.2f}%")
+    else:
+        st.error("Model is not loaded. Please check the model file path.")
 
 # Run the Streamlit app
 if __name__ == "__main__":
