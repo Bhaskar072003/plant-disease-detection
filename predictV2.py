@@ -1,17 +1,27 @@
+import os
 import streamlit as st
 import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 
-# Load your trained model
-model = load_model("/root/cnn_model.keras")
+# Define the absolute path to your model
+model_path = "root/cnn_model.keras"
+
+# Check if the model file exists
+if os.path.exists(model_path):
+    # Load your trained model
+    model = load_model(model_path)
+    st.write("Model loaded successfully!")
+else:
+    st.error(f"Model file not found at {model_path}")
+
 # Define the class names
-classes = ['Healthy','Powdery','Rust']
+classes = ['Healthy', 'Powdery', 'Rust']
 
 # Set up the Streamlit interface
 st.title("Plant Disease Detection")
-st.write("Upload an image of a skin condition to classify it.")
+st.write("Upload an image of a plant condition to classify it.")
 
 # Upload an image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
@@ -32,7 +42,7 @@ if uploaded_file is not None:
     prediction = model.predict(x)[0]
     test_pred = np.argmax(prediction)
     result = classes[test_pred]
-    
+
     # Display the result
     st.write(f"Prediction: {result}")
     st.write(f"Confidence: {np.max(prediction) * 100:.2f}%")
