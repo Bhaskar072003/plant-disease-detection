@@ -5,14 +5,20 @@ from PIL import Image
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 
+# If you have custom objects, define them here
+# For example, if you have a custom layer or function:
+def custom_activation(x):
+    return x
+
 # Define the absolute path to your model
 model_path = os.path.join(os.getcwd(), 'root/cnn_model.keras')
 
 # Check if the model file exists
 if os.path.exists(model_path):
     try:
-        # Load your trained model
-        model = load_model(model_path)
+        # Load your trained model with custom objects
+        custom_objects = {'custom_activation': custom_activation}  # Add your custom objects here
+        model = load_model(model_path, custom_objects=custom_objects)
         st.write("Model loaded successfully!")
     except Exception as e:
         st.error(f"Error loading model: {e}")
