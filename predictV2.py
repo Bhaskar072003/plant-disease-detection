@@ -5,8 +5,7 @@ from PIL import Image
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 
-# If you have custom objects, define them here
-# For example, if you have a custom layer or function:
+# Custom layer or functions definitions (if any)
 def custom_activation(x):
     return x
 
