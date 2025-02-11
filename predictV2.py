@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
+from tensorflow.keras.layers.experimental.preprocessing import RandomRotation
 
 # Custom layer or functions definitions (if any)
 def custom_activation(x):
@@ -16,7 +17,10 @@ model_path = os.path.join(os.getcwd(), 'root/cnn_model.keras')
 if os.path.exists(model_path):
     try:
         # Load your trained model with custom objects
-        custom_objects = {'custom_activation': custom_activation}  # Add your custom objects here
+        custom_objects = {
+            'RandomRotation': RandomRotation,
+            'custom_activation': custom_activation
+        }
         model = load_model(model_path, custom_objects=custom_objects)
         st.write("Model loaded successfully!")
     except Exception as e:
