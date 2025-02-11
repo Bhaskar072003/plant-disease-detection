@@ -6,7 +6,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 
 # Define the absolute path to your model
-model_path = "https://github.com/Bhaskar072003/plant-disease-detection/blob/22e4bb5c1d3266ff01e1f83038f12ab73cc6c0c8/root/cnn_model.keras"
+model_path = "root\cnn_model.keras"
 
 # Check if the model file exists
 if os.path.exists(model_path):
