@@ -6,13 +6,16 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 
 # Define the absolute path to your model
-model_path = "root/cnn_model.keras"
+model_path = os.path.join(os.getcwd(), 'plant-disease-detection\root\cnn_model.keras')
 
 # Check if the model file exists
 if os.path.exists(model_path):
-    # Load your trained model
-    model = load_model(model_path)
-    st.write("Model loaded successfully!")
+    try:
+        # Load your trained model
+        model = load_model(model_path)
+        st.write("Model loaded successfully!")
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
 else:
     st.error(f"Model file not found at {model_path}")
 
@@ -54,4 +57,4 @@ if uploaded_file is not None:
 if __name__ == "__main__":
     st._is_running_with_streamlit = True
     # st.run()
-    # st
+    # st.stop()
